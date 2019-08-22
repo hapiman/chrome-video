@@ -131,7 +131,7 @@ var _volumeNum = 1 // 音量值
 
 当前项目引入`puppeteer`目的就是为了模拟人工触发页面的情况。
 
-### puppeteer
+### 关于puppeteer安装
 
 如果直接使用`puppeteer`，使用npm大概率是下载不下来的。本项目使用了`puppeteer-cn`来代替。
 
