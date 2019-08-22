@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "promise.sleep": "^0.2.0",
-    "puppeteer": "^1.12.2"
+    "puppeteer-cn": "^0.1.8"
   },
   "author": "",
   "license": "ISC"

@@ -1,5 +1,5 @@
 
-const puppeteer = require('puppeteer')
+const puppeteer = require('puppeteer-cn')
 const sleep = require('promise.sleep')
 const pageUrl = 'http://localhost:8000/index.html'
 const durationSeds = 24 * 60 * 60
