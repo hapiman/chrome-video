@@ -1,6 +1,8 @@
 ## 功能
 本项目主要功能为在浏览器中自动播放视频，并且实现音量控制，快进快退，全屏控制，播放暂停控制等功能。
 
+仓库地址：[https://github.com/hapiman/chrome-video](https://github.com/hapiman/chrome-video)
+
 ### 安装静态服务器
 如果电脑上存在nodejs的环境，可以直接安装[anywhere](https://github.com/JacksonTian/anywhere)来访问`index.html`页面。
 进入项目根目录，执行命令：`anywhere`，然后浏览器会自动打开`http://localhost:8000`页面。
