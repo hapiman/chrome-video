@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+  <div id='btns' class='btn-tools'>
+    <button onclick="reduceVolume()" id="btn-reduce">音量--</button> -->
+    <button onclick="addVolume()" id="btn-add">音量++</button> -->
+    <button onclick="vplay()" id="btn-play">播放</button> -->
+    <button onclick="vstop()" id="btn-stop">暂停</button> -->
+    <button onclick="setMuted()" id="btn-muted">静音</button> -->
+    <button onclick="setNotMuted()" id="btn-not-muted">取消静音</button> -->
+    <button onclick="vrestart()" id="btn-restart">重播</button> -->
+    <button onclick="vforward()" id="btn-forward">快进</button> -->
+    <button onclick="vbackward()" id="btn-backward">快退</button> -->
+    <button onclick="openFull()" id="btn-full">全屏</button> -->
+    <button onclick="cancelFull()" id="btn-cancel-full">取消全屏</button> -->
+  </div>
+  <video muted autoplay playsinline id="myVideo" width="100%">
+    <source id="sc" src="demo01.mp4" type="video/mp4" />
+  </video>
+</body>
+<script src="screenfull.min.js" type="text/javascript"></script>
+<script src="utils.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+  var _volumeNum = 1 // 音量值
+  var _speedNum = 1 // 速度值
+  var videoSrc = 'demo02.mp4' // 切换资源
+
+  window.onload = function () {
+    var myVideo = document.getElementById('myVideo')
+    var scSource = document.getElementById('sc')
+    var myVideoBody = { pause: true }
+
+    // 播放完成指令
+    myVideo.addEventListener('ended', function () {
+      scSource.src = videoSrc;
+      myVideo.load()
+      myVideo.play()
+    })
+
+    // 初始化
+    start()
+  }
+
+  // 获取video
+  function getVideo() {
+    var myVideo = document.getElementById('myVideo')
+    return myVideo
+  }
+
+  // 快进
+  function vforward(params) {
+    if (_speedNum >= 2) return
+    _speedNum = accAdd(_speedNum, 0.1)
+    console.log('vforward _speedNum: ', _speedNum)
+    getVideo().playbackRate = _speedNum
+  }
+
+  // 快退
+  function vbackward() {
+    if (_speedNum <= 0.5) return
+    var myVideo = getVideo()
+    _speedNum = accSub(_speedNum, 0.1)
+    console.log('vbackward _speedNum: ', _speedNum)
+    getVideo().playbackRate = _speedNum
+  }
+
+  // 页面加载之后执行命令
+  function start() {
+    var myVideo = getVideo()
+    myVideo.volume = 1
+    myVideo.playbackRate = 1
+  }
+
+  // 设置静音
+  function setMuted() {
+    getVideo().muted = true
+  }
+
+  // 设置非静音
+  function setNotMuted() {
+    getVideo().muted = false
+  }
+
+  // 播放
+  function vplay() {
+    console.log('vplay =>')
+    getVideo().play();
+  }
+
+  // 暂停
+  function vstop() {
+    getVideo().pause();
+  }
+
+  // 重播
+  function vrestart() {
+    getVideo().currentTime = 0
+    getVideo().play()
+  }
+
+  // 取消全屏
+  function cancelFull() {
+    screenfull.exit()
+  }
+
+  // 打开全屏
+  function openFull() {
+    getVideo().webkitRequestFullscreen()
+  }
+
+  // 音量 --
+  function reduceVolume() {
+    console.log('reduceVolume:: current volume: ', myVideo.volume) // 当前音量
+    getVideo().muted = false
+    if (_volumeNum <= 0) return
+    _volumeNum = accSub(_volumeNum, 0.1)
+    getVideo().volume = _volumeNum
+  }
+
+  // 音量 ++
+  function addVolume() {
+    console.log('addVolume:: current volume: ', myVideo.volume)   // 当前音量
+    getVideo().muted = false
+    if (_volumeNum >= 1) return
+    _volumeNum = accAdd(_volumeNum, 0.1)
+    getVideo().volume = _volumeNum
+  }
+</script>
+
+<style lang="css">
+  html,
+  body {
+    margin: 0
+  }
+
+  .btn-tools {
+    position: fixed;
+    z-index: 99;
+    opacity: 100;
+    margin-top: 20px;
+  }
+</style>
+
+</html>
