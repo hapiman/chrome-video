@@ -9,6 +9,9 @@
 
 ### 使用puppeteer自动化执行命令
 通过在`nodejs`调用前端页面的方法，然后能够Socket实现远程控制浏览器的视频播放。
+```sh
+node vplay.js
+```
 
 ### 具体功能实现
 ```js

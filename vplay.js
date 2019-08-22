@@ -19,8 +19,8 @@ const pptrConfig = {
 
 async function doAction (page) {
   await page.click(`#btn-not-muted`)
-  await page.click(`#btn-full`)
   await page.click(`#btn-play`)
+  await page.click(`#btn-full`)
 }
 async function setView (page, screen) {
   await page.setViewport({
@@ -49,7 +49,7 @@ async function start () {
     const page = await browser.newPage()
     const screen = await getScreenInfo(page)
     await reloadPage(page, screen)
-    await sleep(2000)
+    await sleep(10000)
     await reloadPage(page, screen) // 模拟刷新
 
     // 人为关闭页面触发
